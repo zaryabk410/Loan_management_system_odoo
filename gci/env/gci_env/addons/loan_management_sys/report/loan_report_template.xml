@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<template id="report_loan_pdf_template">
+    <t t-call="web.html_container">
+        <t t-foreach="docs" t-as="loan">
+            <div style="font-family: Arial, sans-serif; margin: 20px;">
+                <h2 style="text-align: center; color: #4CAF50;">Loan Report</h2>
+                <hr style="border: 1px solid #4CAF50; margin-bottom: 20px;"/>
+
+                <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+                    <thead>
+                        <tr>
+                            <th colspan="2" style="background-color: #f2f2f2; padding: 10px; text-align: left; font-size: 18px;">Personal Information</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #ddd;">Name:</td>
+                            <td style="padding: 10px; border: 1px solid #ddd;"><t t-esc="loan.name"/></td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #ddd;">Father's Name:</td>
+                            <td style="padding: 10px; border: 1px solid #ddd;"><t t-esc="loan.father_name"/></td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #ddd;">Email:</td>
+                            <td style="padding: 10px; border: 1px solid #ddd;"><t t-esc="loan.email"/></td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #ddd;">Phone:</td>
+                            <td style="padding: 10px; border: 1px solid #ddd;"><t t-esc="loan.phone"/></td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #ddd;">Address:</td>
+                            <td style="padding: 10px; border: 1px solid #ddd;"><t t-esc="loan.address"/></td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #ddd;">CNIC:</td>
+                            <td style="padding: 10px; border: 1px solid #ddd;"><t t-esc="loan.cnic_number"/></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+                    <thead>
+                        <tr>
+                            <th colspan="2" style="background-color: #f2f2f2; padding: 10px; text-align: left; font-size: 18px;">Loan Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #ddd;">Purpose:</td>
+                            <td style="padding: 10px; border: 1px solid #ddd;"><t t-esc="loan.loan_purpose"/></td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #ddd;">Amount:</td>
+                            <td style="padding: 10px; border: 1px solid #ddd;"><t t-esc="loan.loan_amount"/></td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #ddd;">Date:</td>
+                            <td style="padding: 10px; border: 1px solid #ddd;"><t t-esc="loan.loan_date"/></td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #ddd;">Giver:</td>
+                            <td style="padding: 10px; border: 1px solid #ddd;"><t t-esc="loan.giver_id.name"/></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3 style="color: #4CAF50;">Installments</h3>
+                <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+                    <thead>
+                        <tr>
+                            <th style="padding: 10px; border: 1px solid #ddd; background-color: #f2f2f2;">Due Date</th>
+                            <th style="padding: 10px; border: 1px solid #ddd; background-color: #f2f2f2;">Amount Due</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="loan.installment_schedule" t-as="installment">
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid #ddd;"><t t-esc="installment.due_date"/></td>
+                                <td style="padding: 10px; border: 1px solid #ddd;"><t t-esc="installment.amount_due"/></td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+
+                <h3 style="color: #4CAF50;">Repayments</h3>
+                <table style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                        <tr>
+                            <th style="padding: 10px; border: 1px solid #ddd; background-color: #f2f2f2;">Repayment Date</th>
+                            <th style="padding: 10px; border: 1px solid #ddd; background-color: #f2f2f2;">Amount Paid</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="loan.repayment_ids" t-as="repayment">
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid #ddd;"><t t-esc="repayment.repayment_date"/></td>
+                                <td style="padding: 10px; border: 1px solid #ddd;"><t t-esc="repayment.amount_paid"/></td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </t>
+    </t>
+</template>
+
+</odoo>
+

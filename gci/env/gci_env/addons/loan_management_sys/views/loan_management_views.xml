@@ -1,0 +1,96 @@
+<odoo>
+    <record id="view_loan_management_tree" model="ir.ui.view">
+        <field name="name">loan.management.tree</field>
+        <field name="model">loan.management</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="loan_sequence"/>
+                <field name="name"/>
+                <field name="loan_amount"/>
+                <field name="remaining_balance"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_loan_management_form" model="ir.ui.view">
+        <field name="name">loan.management.form</field>
+        <field name="model">loan.management</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_approve"
+                            string="Draft"
+                            type="object"
+                            class="btn-primary"
+                            invisible="state != 'draft'"/>
+
+                    <button name="action_start"
+                            string="Approve"
+                            type="object"
+                            class="btn-primary"
+                            invisible="state != 'approved'"/>
+
+                    <field name="state" widget="statusbar" options="{'clickable': False}"/>
+                </header>
+                <sheet>
+                    <group string="Loan Information">
+                        <group>
+<!--                            <labal style="font-weight:bold">Loan Borrower</labal>-->
+<!--                            <br/>-->
+                            <field name="loan_sequence"/>
+                            <field name="name"/>
+                            <field name="father_name"/>
+                            <field name="email"/>
+                            <field name="phone"/>
+                            <field name="address"/>
+                            <field name="cnic_number"/>
+                            <field name="loan_purpose"/>
+                        </group>
+                        <group>
+
+                            <field name="loan_amount"/>
+                            <field name="loan_date"/>
+                            <field name="giver_id"/>
+                            <field name="giver_phone"/>
+                            <field name="total_installments"/>
+                            <field name="duration_months"/>
+                            <field name="installment_amount" readonly="1"/>
+                            <field name="remaining_balance" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Installments">
+                            <field name="installment_schedule">
+                                <tree>
+                                    <field name="due_date"/>
+                                    <field name="amount_due"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Repayments">
+                            <field name="repayment_ids">
+                                <tree>
+                                    <field name="repayment_date"/>
+                                    <field name="amount_paid"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_loan_management" model="ir.actions.act_window">
+        <field name="name">Loans</field>
+        <field name="res_model">loan.management</field>
+        <field name="view_mode">tree,form</field>
+        <field name="target">current</field>
+    </record>
+</odoo>

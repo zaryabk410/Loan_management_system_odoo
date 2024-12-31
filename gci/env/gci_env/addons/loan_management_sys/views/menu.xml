@@ -1,0 +1,7 @@
+<odoo>
+    <menuitem id="menu_loan_management_root" name="Loan Management" sequence="10"/>
+    <menuitem id="menu_loan_management" name="Loans" parent="menu_loan_management_root" action="action_loan_management"
+              sequence="2"/>
+    <menuitem id="menu_loan_management_givers" name="Loan Givers" parent="menu_loan_management_root" sequence="20"
+              action="action_loan_giver"/>
+</odoo>

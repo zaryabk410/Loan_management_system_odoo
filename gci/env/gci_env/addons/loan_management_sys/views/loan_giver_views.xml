@@ -1,0 +1,39 @@
+<odoo>
+    <record id="view_loan_giver_tree" model="ir.ui.view">
+    <field name="name">loan.giver.tree</field>
+    <field name="model">loan.giver</field>
+    <field name="arch" type="xml">
+        <tree>
+            <field name="name"/>
+            <field name="email"/>
+            <field name="phone"/>
+            <field name="address"/>
+        </tree>
+    </field>
+</record>
+
+<record id="view_loan_giver_form" model="ir.ui.view">
+    <field name="name">loan.giver.form</field>
+    <field name="model">loan.giver</field>
+    <field name="arch" type="xml">
+        <form>
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="email"/>
+                    <field name="phone"/>
+                    <field name="address"/>
+                </group>
+            </sheet>
+        </form>
+    </field>
+</record>
+
+<record id="action_loan_giver" model="ir.actions.act_window">
+    <field name="name">Loan Givers</field>
+    <field name="res_model">loan.giver</field>
+    <field name="view_mode">tree,form</field>
+    <field name="target">current</field>
+</record>
+
+</odoo>

@@ -1,0 +1,21 @@
+{
+    'name': 'Loan Management System',
+    'version': '1.0',
+    'category': 'Accounting',
+    'summary': 'Manage loans and repayments',
+    'description': 'A module to manage loan details, repayments, and generate reports.',
+    'author': 'Your Name',
+    'depends': ['mail'],
+    'data': [
+        'security/ir.model.access.csv',
+        'security/security.xml',
+        'data/sequence_id.xml',
+        'views/loan_giver_views.xml',
+        'views/loan_management_views.xml',
+        'views/menu.xml',
+        'report/loan_report.xml',
+        'report/loan_report_template.xml',
+    ],
+    'installable': True,
+    'application': True,
+}
